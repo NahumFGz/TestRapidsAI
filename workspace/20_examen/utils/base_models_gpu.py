@@ -7,14 +7,12 @@ from cuml.svm import SVC as cuMLSVC
 from lightgbm import LGBMClassifier
 from xgboost import XGBClassifier
 
-
 class BaseModels:
     """
     Clase para seleccionar diferentes modelos de clasificación.
 
     Métodos:
     - 'logistic_regression': Regresión Logística.
-    - 'decision_tree': Árbol de Decisión.
     - 'random_forest': Bosque Aleatorio.
     - 'svm': Support Vector Machine.
     - 'knn': K-Nearest Neighbors.
@@ -24,8 +22,8 @@ class BaseModels:
     - 'xgboost': XGBoost Classifier.
     """
 
-    def __init__(self, random_state=42):
-        self.random_state = random_state
+    def __init__(self):
+        pass
 
     def provider(self, method):
         """
@@ -41,20 +39,20 @@ class BaseModels:
             ValueError: Si el método no es uno de los esperados.
         """
         if method == "logistic_regression":
-            return cuMLLogisticRegression(random_state=self.random_state)
+            return cuMLLogisticRegression()
         elif method == "random_forest":
-            return cuMLRandomForestClassifier(random_state=self.random_state)
+            return cuMLRandomForestClassifier()
         elif method == "svm":
-            return cuMLSVC(probability=True, random_state=self.random_state)
+            return cuMLSVC(probability=True)
         elif method == "knn":
             return cuMLKNeighborsClassifier()
         elif method == "naive_bayes":
             return cuMLGaussianNB()
         elif method == "lgbm":
-            return LGBMClassifier(random_state=self.random_state)
+            return LGBMClassifier()
         elif method == "catboost":
-            return CatBoostClassifier(random_state=self.random_state, verbose=0)
+            return CatBoostClassifier(verbose=0)
         elif method == "xgboost":
-            return XGBClassifier(random_state=self.random_state)
+            return XGBClassifier()
         else:
             raise ValueError("Invalid classification method specified.")

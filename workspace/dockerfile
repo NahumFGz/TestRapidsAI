@@ -6,3 +6,6 @@ WORKDIR /workspace
 
 # Copia archivos desde tu directorio del host al contenedor
 COPY . /workspace
+
+# Instala las dependencias
+RUN python -m pip install -r requirements.txt
