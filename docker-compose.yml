@@ -5,7 +5,7 @@ services:
     build:
       context: ./workspace
       dockerfile: dockerfile
-    image: nvcr.io/nvidia/rapidsai/base:24.06-cuda12.2-py3.9
+    image: nvcr.io/nvidia/rapidsai/base:25.10-cuda13-py3.11
     container_name: rapidsai_custom_container
     deploy:
       resources:
@@ -21,4 +21,7 @@ services:
     environment:
       - NVIDIA_VISIBLE_DEVICES=all
       - NVIDIA_DRIVER_CAPABILITIES=compute,utility
-    command: ["/bin/bash"]
+    command: >
+      bash -c "
+      jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root --notebook-dir=/workspace --NotebookApp.token='' --NotebookApp.password=''
+      "

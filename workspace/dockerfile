@@ -1,5 +1,5 @@
 # Usa una imagen existente como base
-FROM nvcr.io/nvidia/rapidsai/base:24.06-cuda12.2-py3.9
+FROM nvcr.io/nvidia/rapidsai/base:25.10-cuda13-py3.11
 
 # Establece el directorio de trabajo dentro del contenedor
 WORKDIR /workspace
@@ -9,3 +9,6 @@ COPY . /workspace
 
 # Instala las dependencias
 RUN python -m pip install -r requirements.txt
+
+# Asegura que JupyterLab esté instalado (la imagen base puede tener solo Jupyter Notebook)
+RUN python -m pip install jupyterlab --no-cache-dir

@@ -1,1 +1,25 @@
-/venv_rapids
+# Logs
+logs
+*.log
+
+# Env
+.env
+
+# Python
+venv_*/
+**/venv_*/
+__pycache__/
+**/__pycache__/
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+
+# Editor directories and files
+#.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
